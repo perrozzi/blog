@@ -132,7 +132,8 @@ To run the pipeline, simply define the prompt and call `pipe`:
 ```python
 prompt = "a photograph of an astronaut riding a horse"
 
-image = pipe(prompt)["sample"][0]
+with autocast("cuda"): # Needed when using the float16 precision
+	image = pipe(prompt)["sample"][0]
 
 # you can save the image with
 # image.save(f"astronaut_rides_horse.png")
