@@ -125,7 +125,7 @@ from diffusers import StableDiffusionPipeline
 pipe = StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4", revision="fp16", torch_dtype=torch.float16, use_auth_token=YOUR_TOKEN)
 ```
 
-To run the pipeline, simply define the prompt and call `pipe`:
+To run the pipeline, simply define the prompt and call `pipe`. The use of torch.autocast("cuda") is necessary when using half (float16) precision, and recommended for full precision as it will make inference faster:
 
 ```python
 prompt = "a photograph of an astronaut riding a horse"
